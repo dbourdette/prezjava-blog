@@ -3,6 +3,7 @@ package edu.ecm.blog.derby;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import junit.framework.Assert;
@@ -40,7 +41,7 @@ public class DerbyTest {
 	
 	@Test
 	public void createTable() throws ClassNotFoundException, SQLException {
-		connection.createStatement().execute("create table test (firstname char(30), lastname char(30))");
+		connection.createStatement().execute("create table test (firstname varchar(30), lastname varchar(30))");
 	}
 	
 	@Test
@@ -51,6 +52,32 @@ public class DerbyTest {
 		
 		stmt.setString(1, "Groucho");
 		stmt.setString(2, "Marx");
+		
+		Assert.assertEquals(1, stmt.executeUpdate());
+	}
+	
+	@Test
+	public void select() throws ClassNotFoundException, SQLException {
+		insert();
+		
+		PreparedStatement stmt = connection.prepareStatement("select firstname from test where lastname = ?");
+		
+		stmt.setString(1, "Marx");
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		rs.next();
+		
+		Assert.assertEquals("Groucho", rs.getString("firstname"));
+	}
+	
+	@Test
+	public void delete() throws ClassNotFoundException, SQLException {
+		insert();
+		
+		PreparedStatement stmt = connection.prepareStatement("delete from test where lastname = ?");
+		
+		stmt.setString(1, "Marx");
 		
 		Assert.assertEquals(1, stmt.executeUpdate());
 	}

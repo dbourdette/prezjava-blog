@@ -9,5 +9,5 @@
 
 	<import resource="test-context.xml" />
 	
-	<bean class="edu.ecm.blog.service.PostServiceImpl" />
+	<bean class="edu.ecm.blog.service.TagCloudServiceImpl" />
 </beans>

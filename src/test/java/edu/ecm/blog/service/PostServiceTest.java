@@ -1,15 +1,20 @@
 package edu.ecm.blog.service;
 
 import java.util.Date;
+
 import javax.inject.Inject;
+
 import junit.framework.Assert;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import edu.ecm.blog.domain.Post;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,23 +23,25 @@ public class PostServiceTest {
 
     @Inject
     private SessionFactory sessionFactory;
+    
+    @Inject
+    private PostService postService;
 
     @After
     public void cleanDb() {
-        Session session = sessionFactory.openSession();
-
+    	Session session = sessionFactory.openSession();
+    	
+    	Transaction transaction = session.beginTransaction();
+    	
         session.createQuery("delete from Post").executeUpdate();
-
+        
+        transaction.commit();
+        
         session.close();
-
-        sessionFactory.close();
     }
 
     @Test
     public void save() {
-        PostService postService = new PostService();
-        postService.setSessionFactory(sessionFactory);
-
         Post post = new Post();
         post.setTitle("un post");
         post.setDate(new Date());
@@ -44,9 +51,6 @@ public class PostServiceTest {
 
     @Test
     public void delete() {
-        PostService postService = new PostService();
-        postService.setSessionFactory(sessionFactory);
-
         Post post = new Post();
         post.setTitle("un post");
         post.setDate(new Date());
@@ -64,9 +68,6 @@ public class PostServiceTest {
 
     @Test
     public void find() {
-        PostService postService = new PostService();
-        postService.setSessionFactory(sessionFactory);
-
         Post post = new Post();
         post.setTitle("un post");
         post.setDate(new Date());
@@ -85,9 +86,6 @@ public class PostServiceTest {
 
     @Test
     public void count() {
-        PostService postService = new PostService();
-        postService.setSessionFactory(sessionFactory);
-
         Post post = new Post();
         post.setTitle("un post");
         post.setDate(new Date());

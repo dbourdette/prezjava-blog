@@ -1,9 +1,7 @@
 package edu.ecm.blog.service;
 
 import javax.inject.Inject;
-
 import junit.framework.Assert;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -12,65 +10,65 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
-
 import edu.ecm.blog.domain.Post;
 import edu.ecm.blog.util.TagCloud;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class TagCloudServiceTest {
-	@Inject
-	private SessionFactory sessionFactory;
 
-	@Inject
-	private TagCloudService tagCloudService;
+    @Inject
+    private SessionFactory sessionFactory;
 
-	@After
+    @Inject
+    private TagCloudService tagCloudService;
+
+    @After
     public void cleanDb() {
-    	Session session = sessionFactory.openSession();
-    	
-    	Transaction transaction = session.beginTransaction();
-    	
+        Session session = sessionFactory.openSession();
+
+        Transaction transaction = session.beginTransaction();
+
         session.createQuery("delete from Post").executeUpdate();
-        
+
         transaction.commit();
-        
+
         session.close();
     }
-	
-	@Test
-	public void buildTagCloud() {
-		saveSomePosts();
 
-		TagCloud tagCloud = tagCloudService.buildTagCloud();
+    @Test
+    public void buildTagCloud() {
+        saveSomePosts();
 
-		Assert.assertEquals(4, tagCloud.size());
-		Assert.assertTrue(tagCloud.contains("java"));
-		Assert.assertTrue(tagCloud.contains("python"));
-	}
+        TagCloud tagCloud = tagCloudService.buildTagCloud();
 
-	private void saveSomePosts() {
-		Session session = sessionFactory.openSession();
+        Assert.assertEquals(5, tagCloud.size());
+        Assert.assertTrue(tagCloud.contains("java"));
+        Assert.assertTrue(tagCloud.contains("python"));
+        Assert.assertTrue(tagCloud.contains("nodejs"));
+    }
 
-		Transaction transaction = session.beginTransaction();
+    private void saveSomePosts() {
+        Session session = sessionFactory.openSession();
 
-		session.save(buildPost("java,cobol"));
-		session.save(buildPost("java,python"));
-		session.save(buildPost("ruby,python"));
-		session.save(buildPost("nodejs"));
+        Transaction transaction = session.beginTransaction();
 
-		transaction.commit();
+        session.save(buildPost("java,cobol"));
+        session.save(buildPost("java,python"));
+        session.save(buildPost("ruby,python"));
+        session.save(buildPost("nodejs"));
 
-		session.close();
-	}
+        transaction.commit();
 
-	private Post buildPost(String tags) {
-		Post post = new Post();
+        session.close();
+    }
 
-		post.setTitle("test title");
-		post.setTags(tags);
+    private Post buildPost(String tags) {
+        Post post = new Post();
 
-		return post;
-	}
+        post.setTitle("test title");
+        post.setTags(tags);
+
+        return post;
+    }
 }

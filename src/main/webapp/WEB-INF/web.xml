@@ -1,18 +1,50 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<web-app xmlns="http://java.sun.com/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
    http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-  version="2.5">
+	version="2.5">
 
-   	<display-name>blog</display-name>
-   
+	<display-name>blog</display-name>
+
 	<servlet>
-	   <servlet-name>HelloWorldServlet</servlet-name>
-	   <servlet-class>edu.ecm.blog.web.servlet.HelloWorldServlet</servlet-class>
+		<servlet-name>HelloWorldServlet</servlet-name>
+		<servlet-class>edu.ecm.blog.web.servlet.HelloWorldServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	   <servlet-name>HelloWorldServlet</servlet-name>
-	   <url-pattern>/HelloWorldServlet</url-pattern>
+		<servlet-name>HelloWorldServlet</servlet-name>
+		<url-pattern>/HelloWorldServlet</url-pattern>
 	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HelloWorldRedirectServlet</servlet-name>
+		<servlet-class>edu.ecm.blog.web.servlet.HelloWorldRedirectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloWorldRedirectServlet</servlet-name>
+		<url-pattern>/HelloWorldRedirectServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>HelloWorldSessionServlet</servlet-name>
+		<servlet-class>edu.ecm.blog.web.servlet.HelloWorldSessionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloWorldSessionServlet</servlet-name>
+		<url-pattern>/HelloWorldSessionServlet</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<display-name>GuardFilter</display-name>
+		<filter-name>GuardFilter</filter-name>
+		<filter-class>edu.ecm.blog.web.filter.GuardFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>GuardFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/jsp/500.jsp</location>
+	</error-page>
 </web-app>

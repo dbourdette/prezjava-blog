@@ -5,10 +5,12 @@ import javax.inject.Inject;
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import edu.ecm.blog.domain.Post;
 import edu.ecm.blog.util.TagCloud;
 
+@Service
 public class TagCloudServiceImpl implements TagCloudService {
 
     @Inject

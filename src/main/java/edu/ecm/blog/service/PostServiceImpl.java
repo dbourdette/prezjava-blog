@@ -7,10 +7,12 @@ import javax.inject.Inject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.ecm.blog.domain.Post;
 
+@Service
 public class PostServiceImpl implements PostService {
 	@Inject
 	private SessionFactory sessionFactory;

@@ -7,13 +7,14 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.ecm.blog.domain.Post;
 import edu.ecm.blog.service.PostService;
 
 @Controller
-public class IndexController {
+public class BlogController {
 
     @Inject
     private PostService postService;
@@ -40,5 +41,12 @@ public class IndexController {
         model.addAttribute("posts", postService.find(0, 10));
 
         return "index";
+    }
+
+    @RequestMapping("/billet/{slug}")
+    public String post(@PathVariable String slug, Model model) {
+        model.addAttribute("post", postService.findBySlug(slug));
+
+        return "post";
     }
 }

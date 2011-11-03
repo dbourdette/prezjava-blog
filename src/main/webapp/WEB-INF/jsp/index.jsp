@@ -16,7 +16,7 @@
    		<div id="posts">
             <c:forEach var="post" items="${posts}">
                 <div class="post">
-                    <span class="date"><fmt:formatDate value="${post.date}" pattern="dd MMM yyyy à HH'h'mm"/></span> - <span class="title">p</span>
+                    <span class="date"><fmt:formatDate value="${post.date}" pattern="dd MMM yyyy à HH'h'mm"/></span> - <a href="/billet/${post.slug}"><span class="title">${post.title}</span></a>
                     <p>${post.text}</p>
                     <span class="tags">${post.tags}</span>
                     <span class="author">${post.author.name}</span>

@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity      sss
+@Entity
 @Table(name = "author")
 public class Author {
 

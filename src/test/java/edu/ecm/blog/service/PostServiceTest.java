@@ -85,6 +85,19 @@ public class PostServiceTest {
     }
 
     @Test
+    public void findBySlug() {
+        Post post = new Post();
+        post.setTitle("un post");
+        post.setSlug("un-post");
+        post.setDate(new Date());
+
+        postService.save(post);
+
+        Assert.assertEquals("un post", postService.findBySlug("un-post").getTitle());
+        Assert.assertNull(postService.findBySlug("un-autre-post"));
+    }
+
+    @Test
     public void count() {
         Post post = new Post();
         post.setTitle("un post");

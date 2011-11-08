@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,7 @@ public class PostServiceImpl implements PostService {
     public void save(Post post) {
         Session session = sessionFactory.getCurrentSession();
 
-        session.save(post);
+        session.saveOrUpdate(post);
     }
 
     @Override
@@ -42,6 +43,7 @@ public class PostServiceImpl implements PostService {
 
         Criteria criteria = session.createCriteria(Post.class);
 
+        criteria.addOrder(Order.desc("date"));
         criteria.setFirstResult(pageIndex * pageSize);
         criteria.setMaxResults(pageSize);
 
@@ -64,6 +66,14 @@ public class PostServiceImpl implements PostService {
         }
 
         return posts.get(0);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Post findById(Long id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        return (Post) session.get(Post.class, id);
     }
 
     @Override

@@ -24,7 +24,7 @@ public class Post {
 	
 	@Column
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
+	private Date date = new Date();
 	
 	@Column
 	private String slug;

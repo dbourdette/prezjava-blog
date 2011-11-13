@@ -141,6 +141,14 @@
 			<scope>compile</scope>
 		</dependency>
 
+        <!-- hibernate validator -->
+        <dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+			<scope>compile</scope>
+		</dependency>
+
 		<!-- apache commons -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>

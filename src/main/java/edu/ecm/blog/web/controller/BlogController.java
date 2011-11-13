@@ -36,7 +36,7 @@ public class BlogController {
         }
     }
 
-    @RequestMapping("/index")
+    @RequestMapping({"/index", "/"})
     public String index(Model model) {
         model.addAttribute("posts", postService.find(0, 10));
 

@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name = "post")
 public class Post {
@@ -20,6 +22,7 @@ public class Post {
 	private Long id;
 	
 	@Column
+    @NotEmpty
 	private String title;
 	
 	@Column

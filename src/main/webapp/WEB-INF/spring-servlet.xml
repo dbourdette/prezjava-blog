@@ -15,9 +15,13 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 
     <context:component-scan base-package="edu.ecm.blog.web.controller"/>
     <context:component-scan base-package="edu.ecm.blog.service"/>
+    <context:component-scan base-package="edu.ecm.blog.aop"/>
 
     <!-- Support des annotations -->
     <context:annotation-config/>
+
+    <!-- Support d'aspectj -->
+    <aop:aspectj-autoproxy/>
 
     <!-- Création de composants classiques pour spring mvc -->
     <mvc:annotation-driven/>

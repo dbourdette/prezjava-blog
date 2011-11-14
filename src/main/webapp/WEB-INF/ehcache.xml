@@ -1,0 +1,4 @@
+<ehcache>
+    <defaultCache maxElementsInMemory="500" eternal="true" overflowToDisk="false" memoryStoreEvictionPolicy="LFU"/>
+    <cache name="postsCache" maxElementsInMemory="500" eternal="true" overflowToDisk="false" memoryStoreEvictionPolicy="LRU"/>
+</ehcache>

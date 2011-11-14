@@ -17,6 +17,15 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
     <context:component-scan base-package="edu.ecm.blog.service"/>
     <context:component-scan base-package="edu.ecm.blog.aop"/>
 
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="/WEB-INF/ehcache.xml" />
+    </bean>
+
+    <bean id="postsCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="cacheName" value="postsCache" />
+	</bean>
+
     <!-- Support des annotations -->
     <context:annotation-config/>
 

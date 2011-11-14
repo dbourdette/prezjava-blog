@@ -12,6 +12,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import edu.ecm.blog.annotation.UseCache;
+import edu.ecm.blog.annotation.FlushCache;
 import edu.ecm.blog.domain.Post;
 
 @Service
@@ -21,6 +23,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional
+    @FlushCache
     public void save(Post post) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -29,6 +32,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional
+    @FlushCache
     public void delete(Long id) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -37,6 +41,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional(readOnly = true)
+    @UseCache
     @SuppressWarnings("unchecked")
     public List<Post> find(int pageIndex, int pageSize) {
         Session session = sessionFactory.getCurrentSession();
@@ -52,6 +57,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional(readOnly = true)
+    @UseCache
     public Post findBySlug(String slug) {
         Session session = sessionFactory.openSession();
 
@@ -70,6 +76,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional(readOnly = true)
+    @UseCache
     public Post findById(Long id) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -78,6 +85,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     @Transactional(readOnly = true)
+    @UseCache
     public int count() {
         Session session = sessionFactory.openSession();
 

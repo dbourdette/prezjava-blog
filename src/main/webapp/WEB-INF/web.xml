@@ -6,6 +6,14 @@
 
 	<display-name>blog</display-name>
 
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>WEB-INF/spring-context.xml</param-value>
+    </context-param>
+
 	<filter>
 	   <filter-name>monitoring</filter-name>
 	   <filter-class>net.bull.javamelody.MonitoringFilter</filter-class> 
@@ -17,7 +25,19 @@
 	<listener>
 	   <listener-class>net.bull.javamelody.SessionListener</listener-class>
 	</listener>
-	
+
+    <listener>
+        <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>postWebService</servlet-name>
+        <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>postWebService</servlet-name>
+        <url-pattern>/ws/post</url-pattern>
+    </servlet-mapping>
+
 	<!-- Spring servlet -->
 	<servlet>
 	   <servlet-name>spring</servlet-name>

@@ -2,6 +2,8 @@
 body {
 	width: 900px;
 	margin: auto;
+    background-color: #858FB3;
+    font: 14px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
 }
 
 p {
@@ -12,7 +14,15 @@ p {
 	width: 900px;
 	height: 50px;
 	border-bottom: 1px gray solid;
+    margin-top: 10px;
 	margin-bottom: 10px;
+    border-bottom-left-radius: 0px 0px;
+    border-bottom-right-radius: 0px 0px;
+    border-top-left-radius: 20px 20px;
+    border-top-right-radius: 0px 0px;
+    border: 1px #284B7E solid;
+    font-size: 16px;
+    background-color: white;
 }
 
 #header .title {
@@ -24,14 +34,19 @@ p {
 
 #posts {
 	float: left;
-	width: 689px;
+	width: 687px;
 	padding:5px;
 	border-right: 1px gray solid;
+    border-bottom-left-radius: 20px 20px;
+    border-bottom-right-radius: 20px 20px;
+    border: 1px #284B7E solid;
+    background-color: white;
 }
 
 .post {
 	margin-bottom:20px;
 	border-bottom: 1px #C2C2C2 solid;
+    padding-bottom: 10px;
 }
 
 .post .date {
@@ -42,8 +57,12 @@ p {
 	font-weight: bold;
 }
 
+.post p {
+    margin: 10px 0 10px 0;
+}
+
 .post .tags {
-	
+
 }
 
 .post .author {
@@ -54,21 +73,42 @@ p {
 #right {
 	float: right;
 	width: 190px;
-	padding:5px;
 }
 
 .tagcloud {
-	
+    border-bottom-left-radius: 0px 0px;
+    border-bottom-right-radius: 20px 20px;
+    border-top-left-radius: 0px 0px;
+    border-top-right-radius: 0px 0px;
+    border: 1px #284B7E solid;
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.tagcloud ul li {
+    margin: 0px;
 }
 
 .latest {
-	
+    border-bottom-left-radius: 0px 0px;
+    border-bottom-right-radius: 20px 20px;
+    border-top-left-radius: 0px 0px;
+    border-top-right-radius: 0px 0px;
+    border: 1px #284B7E solid;
+    background-color: white;
+    padding: 5px;
 }
 
 #form {
 	float: left;
 	width: 689px;
 	padding:5px;
-	border-right: 1px gray solid;
+    border-bottom-left-radius: 0px 0px;
+    border-bottom-right-radius: 20px 20px;
+    border-top-left-radius: 0px 0px;
+    border-top-right-radius: 0px 0px;
+    border: 1px #284B7E solid;
+    background-color: white;
 }
 

@@ -53,7 +53,7 @@ public class PostServiceImpl implements PostService {
     @Override
     @Transactional(readOnly = true)
     public Post findBySlug(String slug) {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
 
         Criteria criteria = session.createCriteria(Post.class);
 
@@ -79,7 +79,7 @@ public class PostServiceImpl implements PostService {
     @Override
     @Transactional(readOnly = true)
     public int count() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
 
         return ((Long) session.createQuery("select count(*) from Post").uniqueResult()).intValue();
     }
